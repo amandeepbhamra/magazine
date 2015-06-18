@@ -18,7 +18,7 @@ gem 'exception_notification'
 gem 'activeuuid', '>= 0.5.0'
 gem 'ahoy_matey'
 gem 'client_side_validations'
-gem 'acts_as_paranoid'
+gem "paranoia", "~> 2.0"
 gem 'rails_layout'
 gem 'bootstrap-sass'
 
