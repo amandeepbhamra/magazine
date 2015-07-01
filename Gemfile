@@ -19,6 +19,7 @@ gem "paranoia", "~> 2.0"
 gem 'rails_layout'
 gem 'bootstrap-sass'
 gem 'adminlte2-rails'
+gem 'faker'
 
 group :development, :test do
 	gem 'better_errors'
@@ -26,7 +27,7 @@ group :development, :test do
 	gem 'quiet_assets'
 	gem 'mailcatcher'
 	gem 'hirb'
-	gem 'faker'
+	
 	gem 'railroady'
 	gem 'zeus'
 	gem 'debugger'
