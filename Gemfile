@@ -11,14 +11,10 @@ gem 'thin'
 gem 'devise'
 gem 'nested_form'
 gem 'will_paginate'
-gem 'ransack'
 gem 'whenever', :require => false
-gem 'paperclip'
 gem 'exception_notification'
-gem "paranoia", "~> 2.0"
 gem 'rails_layout'
 gem 'bootstrap-sass'
-gem 'adminlte2-rails'
 gem 'faker'
 
 group :development, :test do
@@ -27,7 +23,6 @@ group :development, :test do
 	gem 'quiet_assets'
 	gem 'mailcatcher'
 	gem 'hirb'
-	
 	gem 'railroady'
 	gem 'zeus'
 	gem 'debugger'

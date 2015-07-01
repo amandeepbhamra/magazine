@@ -3,12 +3,10 @@ class ArticlesController < ApplicationController
 	skip_before_filter :authenticate_user!, only: [:public]
 
 	before_action :validate_user
-	before_action :unauthorize_if_not_current_user, only: [:index]
-
+	
 	before_action :set_article, only: [:show, :edit, :update, :destroy]
 	
-	helper_method :unauthorize
-
+	
 	def index
 		@articles = @user.articles.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20) unless @user.blank?
 	end
@@ -18,7 +16,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
-		@comments = @article.comments.where("reply_comment_id IS ?", nil).includes(:user, :replies)
+		@comments = @article.comments.includes(:replies).where("reply_comment_id IS ?", nil)
 		@comment = @article.comments.build
 	end
 
@@ -64,16 +62,9 @@ class ArticlesController < ApplicationController
 		@user = User.find_by_id(params[:user_id]) if defined? params[:user_id] or !params[:user_id].blank?
  	end
 
- 	def unauthorize_if_not_current_user
- 		if defined? params[:user_id] and !params[:user_id].blank? and user_signed_in?
- 			redirect_to root_path, notice: "You are Not Authorized for this action!" if current_user.id != @user.id 
- 		end 
- 	end
-
  	def set_article
 		@article = @user.articles.find_by_id(params[:id])
 	end
-
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def article_params

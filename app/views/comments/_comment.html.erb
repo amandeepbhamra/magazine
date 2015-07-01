@@ -6,9 +6,9 @@
 	<div class="media-body">
 		<p class="media-heading"><%= comment.content %>
 		</p>
-		<small>By <%= comment.user.name unless comment.user.blank? %> <%= event_time_format(comment.updated_at) %></small> 
+		<small>By <%= comment.commentor_name unless comment.commentor_name.blank? %> <%= event_time_format(comment.updated_at) %></small> 
 		<%= link_to "Reply", new_article_comment_path(@article.id, reply_comment_id: comment.id), remote: :true %> 
-		<%= link_to "Delete", [@article, comment], method: :delete, remote: :true if (current_user.id == comment.user_id) and (comment.replies_count == 0) %> 
+		<%= link_to "Delete", [@article, comment], method: :delete, remote: :true if (current_user.id == comment.commentor_id) and (comment.replies_count == 0) %> 
 
 		<!-- Nested Comment -->
 		<div class="replies" id="comment_replies_<%= comment.id %>">

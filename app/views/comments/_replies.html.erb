@@ -1,4 +1,4 @@
-<% unless comment.replies.blank? %>
+<% unless comment.replies_count == 0 %>
 	<div >
 		<%- comment.replies.each do |comment| -%>
     		<div class='reply' id="child_comment_<%= comment.id %>">
