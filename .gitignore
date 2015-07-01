@@ -16,3 +16,5 @@ vendor/bundle/*
 zeus.json
 custom_plan.rb
 .DS_store
+.ruby-gemset
+.ruby-version

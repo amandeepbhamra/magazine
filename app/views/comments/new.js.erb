@@ -1,0 +1,1 @@
+$("#comment_replies_<%= @reply_comment_id %>").prepend("<%= j (render "comments/form", :article => @article, :comment => @comment, :reply_comment_id => @reply_comment_id) %>");

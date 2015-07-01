@@ -1,0 +1,10 @@
+<h2>Articles</h2>
+<div class="row">
+    <% @articles.each do |article| %>
+        <div class="col-md-6">
+            <h4><%= article.title %></h4>
+            <p><%= truncate article.body, length: 100 %></p>
+        </div>
+    <% end %>
+</div>
+<%= will_paginate @articles %>

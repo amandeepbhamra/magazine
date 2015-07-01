@@ -1,0 +1,20 @@
+<%= form_for [article, comment], remote: :true do |f| %>
+	
+	<div class="field">
+		<%= f.text_area :content, :rows => 2, :class => "form-control" %>
+	</div>
+
+	<div class="field">
+		<% if defined? reply_comment_id %>
+			<%= f.hidden_field :reply_comment_id, value: reply_comment_id %>
+		<% end %>
+	</div>
+
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<br />
+	<div class="actions">
+		<%= f.submit "Comment", :class => "btn btn-primary pull-right" %>
+	</div>
+	<br />
+
+<% end %>

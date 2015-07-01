@@ -1,0 +1,9 @@
+<% unless comment.replies.blank? %>
+	<div >
+		<%- comment.replies.each do |comment| -%>
+    		<div class='reply' id="child_comment_<%= comment.id %>">
+	        	<%= render "comments/comment", :comment => comment %>
+    		</div>
+		<%- end -%>
+	</div>
+<% end %>

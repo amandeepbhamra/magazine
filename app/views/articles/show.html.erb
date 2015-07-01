@@ -1,24 +1,32 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+<h2>
+	<%= @article.title %>
+	<%= link_to 'Edit', edit_user_article_path(current_user.id, @article), :class => "btn btn-warning" if user_signed_in? %>
+	<%= link_to 'Back', [@user, :articles], :class => "btn btn-default" %>
+</h2>
+<!-- Author -->
+<p class="lead">
+    by <a href="#"><%= @article.user.name %></a>
 </p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
+<hr>
+<!-- Date/Time -->
+<p><span class="glyphicon glyphicon-time"></span> <%= @article.created_at.strftime("Posted On: %d/%m/%Y at %I:%M%p") %></p>
+<hr>
+<!-- Preview Image -->
+<p class="lead">
+	<%= @article.body %>
 </p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @article.author_id %>
-</p>
-
-<p>
-  <strong>Deleted at:</strong>
-  <%= @article.deleted_at %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<hr>
+<!-- Blog Comments -->
+<% if user_signed_in? %>
+	<!-- Comments Form -->
+	<div class="well">
+	    <h4>Leave a Comment:</h4>
+        <div class="form-group">
+            <%= render "comments/form", article: @article, comment: @comment %>
+        </div>
+	</div>
+	<hr>
+	<div class="row" id="comments">
+		<%= render partial: "comments/comment", collection: @comments %>
+	</div>          
+<% end %>
